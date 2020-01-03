@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mintos Auto
 // @namespace    https://www.mintos.com/
-// @version      0.3
+// @version      0.4
 // @description  Apply Mintos Auto Invest setting of currently active field to all loan originators
 // @author       fluke
 // @match        *://www.mintos.com/*/auto-invest/*
@@ -25,7 +25,7 @@
         var sel;
         elements = document.querySelectorAll( ":hover" );
         for (i=elements.length-1; i>=0; i=i-1){
-          if ( (typeof(elements[i].type) !== "undefined") &&
+          if ( (typeof(elements[i].type) === "string") &&
                (elements[i].type.toLowerCase() === "checkbox")
              ){
             sel = elements[i];
@@ -43,7 +43,7 @@
                                                     ));
             elements = document.getElementsByTagName("input");
             for (i=0; i<elements.length; i=i+1){
-              if ( (elements[i].type.toLowerCase() == "checkbox") &&
+              if ( (elements[i].type.toLowerCase() === "checkbox") &&
                   (id_re.test(elements[i].id))
                  ){
                 elements[i].checked = sel.checked;
